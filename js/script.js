@@ -1,20 +1,36 @@
-"use strict";
+document.addEventListener('DOMContentLoaded', () => {
+  const scoreButton = document.querySelector('#score-button');
+  const scoreDisplay = document.querySelector('#score');
+  const statusDisplay = document.querySelector('#status');
+  const doubleCard = document.querySelector('#double-card');
+  const hoverZone = document.querySelector('#hover-zone');
 
-const scoreButton = document.querySelector("#score-button");
-const score = document.querySelector("#score");
-const doubleCard = document.querySelector("#double-card");
-const hoverZone = document.querySelector("#hover-zone");
-const status = document.querySelector("#status");
-let points = 0;
+  let points = 0;
 
-// Задание 1. Подключите click к scoreButton.
-// Внутри обработчика увеличьте points, затем обновите score.textContent и status.
+  if (scoreButton && scoreDisplay) {
+    scoreButton.addEventListener('click', () => {
+      points += 1;
+      scoreDisplay.textContent = points;
 
-// Задание 2. Подключите dblclick к doubleCard.
-// Переключите класс is-selected и измените текст status.
+      if (statusDisplay) {
+        statusDisplay.textContent = 'Кнопка нажата!';
+      }
+    });
+  }
 
-// Задание 3. Подключите mouseenter к hoverZone.
-// Добавьте класс is-hovered и покажите сообщение.
+  if (doubleCard) {
+    doubleCard.addEventListener('dblclick', () => {
+      doubleCard.classList.toggle('is-selected');
+    });
+  }
 
-// Задание 4. Подключите mouseleave к hoverZone.
-// Уберите класс is-hovered и верните исходный текст статуса.
+  if (hoverZone) {
+    hoverZone.addEventListener('mouseenter', () => {
+      hoverZone.classList.add('is-hovered');
+    });
+
+    hoverZone.addEventListener('mouseleave', () => {
+      hoverZone.classList.remove('is-hovered');
+    });
+  }
+});
